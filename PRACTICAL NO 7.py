@@ -1,0 +1,18 @@
+import requests
+from bs4 import BeautifulSoup
+
+url = "https://www.facebook.com/"
+response = requests.get(url)
+
+soup = BeautifulSoup(response.text, "html.parser")
+
+if soup.title:
+    print("Page Title:", soup.title.string)
+
+for heading in soup.find_all("h1"):
+    print("Heading:", heading.get_text(strip=True))
+
+for link in soup.find_all("a", href=True)[:5]:
+    print("Link Text:", link.get_text(strip=True),
+          "| URL:", link["href"])
+    print("S115 BIJAL TRIPATHI")
